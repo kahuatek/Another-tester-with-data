@@ -31,7 +31,7 @@ function calculateZoomLimits() {
     map.fitBounds(bounds);
 }
 
-map.whenReady(calculateZoomLimits);
+window.addEventListener("load", calculateZoomLimits);
 window.addEventListener('resize', calculateZoomLimits);
 
 const customIcon = L.icon({
