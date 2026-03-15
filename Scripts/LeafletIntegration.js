@@ -45,3 +45,26 @@ const customIcon = L.icon({
 L.marker([100,100], { icon: customIcon })
   .addTo(map)
   .bindPopup("Example location");
+
+const baseIconSize = 10; // pixels in the original image
+
+function updateMarkerSize() {
+
+  const zoom = map.getZoom();
+  const scale = map.getZoomScale(zoom, map.getMinZoom());
+
+  const size = baseIconSize * scale;
+
+  const icon = L.icon({
+    iconUrl: 'Images/Icon.png',
+    iconSize: [size, size],
+    iconAnchor: [size/2, size/2]
+  });
+
+  marker.setIcon(icon);
+}
+
+const marker = L.marker([100,100]).addTo(map);
+
+map.on("zoom", updateMarkerSize);
+updateMarkerSize();
