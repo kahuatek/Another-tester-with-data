@@ -3,11 +3,13 @@ const imagepath = "Images/Island.png";
 
 const img = new Image();
 img.src = imagepath;
+const width = 0;
+const height = 0;
 
 img.onload = function () {
 
-  const width = img.width;
-  const height = img.height;
+    width = img.width;
+    height = img.height;
 
   const bounds = [[0,0],[height,width]];
 
