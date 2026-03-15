@@ -6,6 +6,12 @@ img.src = imagepath;
 var width = 0;
 var height = 0;
 
+const map = L.map('map', {
+  crs: L.CRS.Simple,
+  zoomSnap: 1,
+  zoomDelta: 1
+});
+
 img.onload = function () {
 
     width = img.width;
@@ -19,12 +25,6 @@ img.onload = function () {
 };
 
 const bounds = [[0,0],[height,width]];
-
-const map = L.map('map', {
-  crs: L.CRS.Simple,
-  zoomSnap: 1,
-  zoomDelta: 1
-});
 
 // add image
 L.imageOverlay(imagepath, bounds).addTo(map);
