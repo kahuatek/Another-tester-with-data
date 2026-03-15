@@ -2,7 +2,7 @@
     "sheet_config": {
         "main_sheet": {
             "id" : "1Qv5yAojhOPR259mfrXL3qha0HiVgYIBzt2o4JgZeZFc",
-            "markers": "markers!A1:E",
+            "markers": "markers",
             "generations": ""
         }
     }
