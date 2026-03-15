@@ -1,44 +1,33 @@
-//LeafletIntegration.js
-// image size
 const width = 791;
 const height = 463;
 
-// create map using simple coordinate system
+const bounds = [[0,0],[height,width]];
+
 const map = L.map('map', {
-  crs: L.CRS.Simple,
-  minZoom: -2,
-  maxZoom: 2
+  crs: L.CRS.Simple
 });
 
-// image bounds
-const bounds = [[0,0], [height, width]];
+const overlay = L.imageOverlay('Images/Island.png', bounds, {
+  className: 'leaflet-image-map'
+}).addTo(map);
 
-// add the image as the map
-L.imageOverlay('Images/Island.png', bounds).addTo(map);
-
-// fit map to image
-map.fitBounds(bounds);
-
-// lock the map within the image
 map.setMaxBounds(bounds);
 
-// example marker
-L.marker([100, 100]).addTo(map)
-  .bindPopup("Example location")
-  .openPopup();
+// dynamic zoom
+function calculateZoomLimits() {
+    const size = map.getSize();
+    const scaleX = size.x / width;
+    const scaleY = size.y / height;
+    const scale = Math.min(scaleX, scaleY);
 
-window.calculateMinZoom = function(){
+    const minZoom = Math.log2(scale);
+    const zoomInLevels = 3;
 
-  const size = map.getSize();
+    map.setMinZoom(minZoom);
+    map.setMaxZoom(minZoom + zoomInLevels);
 
-  const zoomX = size.x / width;
-  const zoomY = size.y / height;
-
-  const scale = Math.min(zoomX, zoomY);
-
-  const zoom = Math.log2(scale);
-
-  map.setMinZoom(zoom);
-  console.log(zoom);
-
+    map.fitBounds(bounds);
 }
+
+map.whenReady(calculateZoomLimits);
+window.addEventListener('resize', calculateZoomLimits);
