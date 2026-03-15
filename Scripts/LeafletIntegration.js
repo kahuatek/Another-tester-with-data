@@ -1,40 +1,19 @@
-//LeafletIntegration.js
-const imagepath = "Images/Island.png";
-
-const img = new Image();
-img.src = imagepath;
-var width = 0;
-var height = 0;
-
-const map = L.map('map', {
-  crs: L.CRS.Simple
-});
-
-img.onload = function () {
-
-    width = img.width;
-    height = img.height;
-
-  const bounds = [[0,0],[height,width]];
-
-  L.imageOverlay(img.src, bounds).addTo(map);
-  map.fitBounds(bounds);
-
-};
+const width = 791;
+const height = 463;
 
 const bounds = [[0,0],[height,width]];
 
-// add image
-L.imageOverlay(imagepath, bounds).addTo(map);
+const map = L.map('map', {
+  crs: L.CRS.Simple,
+  minZoom: -2,
+  maxZoom: 2
+});
 
-// give Leaflet an initial state
-map.fitBounds(bounds);
+const overlay = L.imageOverlay('Images/Island.png', bounds, {
+  className: 'leaflet-image-map'
+}).addTo(map);
 
-// now safe to limit panning
 map.setMaxBounds(bounds);
-
-map.whenReady(calculateZoomLimits);
-window.addEventListener('resize', calculateZoomLimits);
 
 // dynamic zoom
 function calculateZoomLimits() {
@@ -44,7 +23,7 @@ function calculateZoomLimits() {
     const scale = Math.min(scaleX, scaleY);
 
     const minZoom = Math.log2(scale);
-    const zoomInLevels = 5;
+    const zoomInLevels = 3;
 
     map.setMinZoom(minZoom);
     map.setMaxZoom(minZoom + zoomInLevels);
@@ -52,7 +31,8 @@ function calculateZoomLimits() {
     map.fitBounds(bounds);
 }
 
-
+map.whenReady(calculateZoomLimits);
+window.addEventListener('resize', calculateZoomLimits);
 
 const customIcon = L.icon({
   iconUrl: 'Images/Icon.png',
