@@ -1,23 +1,32 @@
-// image size
 const width = 791;
 const height = 463;
 
-// create map using simple coordinate system
-const map = L.map('map', {
-  crs: L.CRS.Simple,
-  minZoom: -2
+const bounds = [[0,0],[height,width]];
+
+const map = L.map('map',{
+  crs: L.CRS.Simple
 });
 
-// image bounds
-const bounds = [[0,0], [height, width]];
+L.imageOverlay("Images/Island.png", bounds).addTo(map);
 
-// add the image as the map
-L.imageOverlay('Images/Island.png', bounds).addTo(map);
+function calculateMinZoom(){
 
-// fit map to image
-map.fitBounds(bounds);
+  const size = map.getSize();
 
-// example marker
-L.marker([20, 20]).addTo(map)
-  .bindPopup("Example location")
-  .openPopup();
+  const zoomX = size.x / width;
+  const zoomY = size.y / height;
+
+  const scale = Math.min(zoomX, zoomY);
+
+  const zoom = Math.log2(scale);
+
+  map.setMinZoom(zoom);
+
+}
+
+map.whenReady(() => {
+  calculateMinZoom();
+  map.fitBounds(bounds);
+});
+
+window.addEventListener("resize", calculateMinZoom);
