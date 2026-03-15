@@ -1,0 +1,27 @@
+/* style.css */
+body { margin:0; }
+
+.leaflet-image-layer {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+#map {
+    width: 100%;
+    height: 100vh; 
+}
+
+button {
+    position: absolute; 
+    top: 20px;          
+    left: 20px;         
+    z-index: 1000;      
+    background: red;  
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #eee;
+}
