@@ -1,49 +1,60 @@
 
 const SHEET_ID = "1Qv5yAojhOPR259mfrXL3qha0HiVgYIBzt2o4JgZeZFc";
-const SHEET_NAME = "Sheet1";
+const SHEET_NAME = "Sheet1"; // change if needed
 
-const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
+async function loadSheet() {
 
-// create map
-const map = L.map('map').setView([51.0, 10.0], 6);
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
 
-// map tiles
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
+  document.getElementById("status").innerText = "Loading...";
 
-// load sheet
-fetch(url)
-.then(res => res.text())
-.then(text => {
+  try {
 
-  const json = JSON.parse(text.substring(47).slice(0,-2));
+    const response = await fetch(url);
+    const text = await response.text();
 
-  const cols = json.table.cols.map(c => c.label);
-  const rows = json.table.rows;
+    // Google wraps the JSON in a JS function, so we strip it
+    const json = JSON.parse(text.substring(47).slice(0, -2));
 
-  rows.forEach(row => {
+    const rows = json.table.rows;
+    const cols = json.table.cols;
 
-    const obj = {};
+    const table = document.getElementById("sheetTable");
+    table.innerHTML = "";
 
-    row.c.forEach((cell,i)=>{
-      obj[cols[i]] = cell ? cell.v : "";
+    // Create header
+    const header = document.createElement("tr");
+
+    cols.forEach(col => {
+      const th = document.createElement("th");
+      th.innerText = col.label || "";
+      header.appendChild(th);
     });
 
-    const lat = parseFloat(obj.Lat);
-    const lng = parseFloat(obj.Lng);
+    table.appendChild(header);
 
-    if(!isNaN(lat) && !isNaN(lng)){
+    // Create rows
+    rows.forEach(row => {
 
-      const marker = L.marker([lat,lng]).addTo(map);
+      const tr = document.createElement("tr");
 
-      marker.bindPopup(`
-        <b>${obj.Name}</b><br>
-        ${obj.Info}
-      `);
+      row.c.forEach(cell => {
+        const td = document.createElement("td");
+        td.innerText = cell ? cell.v : "";
+        tr.appendChild(td);
+      });
 
-    }
+      table.appendChild(tr);
 
-  });
+    });
 
-});
+    document.getElementById("status").innerText = "Loaded successfully.";
+
+  } catch (error) {
+
+    document.getElementById("status").innerText = "Error loading sheet.";
+    console.error(error);
+
+  }
+
+}
