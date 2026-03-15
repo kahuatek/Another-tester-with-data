@@ -18,6 +18,6 @@ L.imageOverlay('Images/Island.png', bounds).addTo(map);
 map.fitBounds(bounds);
 
 // example marker
-L.marker([600, 1000]).addTo(map)
+L.marker([20, 20]).addTo(map)
   .bindPopup("Example location")
   .openPopup();
