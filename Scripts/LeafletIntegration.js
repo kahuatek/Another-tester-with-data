@@ -8,7 +8,7 @@ const map = L.map('map', {
   minZoom: -2
 });
 
-const overlay = L.imageOverlay('Images/Island.png', bounds, {
+const overlay = L.imageOverlay('Images/MBAM.png', bounds, {
   className: 'leaflet-image-map'
 }).addTo(map);
 
