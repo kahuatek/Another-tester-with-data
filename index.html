@@ -3,13 +3,26 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Myovari Tester Page</title>
+<title>Leaflet Map</title>
+
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<style src="Pages/style.css"></style>
+
+<style>
+body { margin:0; }
+#map { height:100vh; }
+.leaflet-image-layer {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+</style>
+
 </head>
 
 <body>
-<button><img src="Images/Icon.png"></button>
+<button onclick="loadSheet()">Load Data</button>
+<div id="status"></div>
+<table id="sheetTable"></table>
+
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
