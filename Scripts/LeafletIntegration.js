@@ -3,8 +3,8 @@ const imagepath = "Images/Island.png";
 
 const img = new Image();
 img.src = imagepath;
-const width = 0;
-const height = 0;
+var width = 0;
+var height = 0;
 
 img.onload = function () {
 
