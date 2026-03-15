@@ -1,3 +1,4 @@
+//LeafletIntegration.js
 // image size
 const width = 791;
 const height = 463;
@@ -22,7 +23,7 @@ L.marker([100, 100]).addTo(map)
   .bindPopup("Example location")
   .openPopup();
 
-function calculateMinZoom(){
+window.calculateMinZoom = function(){
 
   const size = map.getSize();
 
@@ -34,5 +35,6 @@ function calculateMinZoom(){
   const zoom = Math.log2(scale);
 
   map.setMinZoom(zoom);
-    console.log(zoom)
+  console.log(zoom);
+
 }
