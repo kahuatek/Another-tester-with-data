@@ -5,7 +5,8 @@ const bounds = [[0,0],[height,width]];
 
 const map = L.map('map', {
   crs: L.CRS.Simple,
-  minZoom: -2
+  minZoom: -2,
+  maxZoom: 2
 });
 
 const overlay = L.imageOverlay('Images/MBAM.png', bounds, {
