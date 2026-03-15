@@ -4,7 +4,8 @@ const height = 463;
 const bounds = [[0,0],[height,width]];
 
 const map = L.map('map', {
-  crs: L.CRS.Simple
+  crs: L.CRS.Simple,
+  minZoom: -2
 });
 
 const overlay = L.imageOverlay('Images/Island.png', bounds, {
