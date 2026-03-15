@@ -32,3 +32,15 @@ function calculateZoomLimits() {
 
 map.whenReady(calculateZoomLimits);
 window.addEventListener('resize', calculateZoomLimits);
+
+const customIcon = L.icon({
+  iconUrl: 'Images/Icon.png',
+
+  iconSize: [10, 10],      // size of icon
+  iconAnchor: [5, 5],      // where the marker point is
+  popupAnchor: [0, 0]     // popup position
+});
+
+L.marker([100,100], { icon: customIcon })
+  .addTo(map)
+  .bindPopup("Example location");
