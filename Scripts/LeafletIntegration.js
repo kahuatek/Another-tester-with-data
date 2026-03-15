@@ -23,7 +23,7 @@ function calculateZoomLimits() {
     const scale = Math.min(scaleX, scaleY);
 
     const minZoom = Math.log2(scale);
-    const zoomInLevels = 3;
+    const zoomInLevels = 5;
 
     map.setMinZoom(minZoom);
     map.setMaxZoom(minZoom + zoomInLevels);
