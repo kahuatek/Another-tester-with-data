@@ -18,6 +18,21 @@ L.imageOverlay('Images/Island.png', bounds).addTo(map);
 map.fitBounds(bounds);
 
 // example marker
-L.marker([20, 20]).addTo(map)
+L.marker([100, 100]).addTo(map)
   .bindPopup("Example location")
   .openPopup();
+
+function calculateMinZoom(){
+
+  const size = map.getSize();
+
+  const zoomX = size.x / width;
+  const zoomY = size.y / height;
+
+  const scale = Math.min(zoomX, zoomY);
+
+  const zoom = Math.log2(scale);
+
+  map.setMinZoom(zoom);
+    console.log(zoom)
+}
