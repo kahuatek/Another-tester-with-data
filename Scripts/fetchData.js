@@ -1,6 +1,6 @@
-//fetchData.js
+//fetchData.js Specific Example
 const SHEET_ID = "1Qv5yAojhOPR259mfrXL3qha0HiVgYIBzt2o4JgZeZFc";
-const SHEET_NAME = "Sheet1"; // change if needed
+const SHEET_NAME = "Sheet1";
 
 async function loadSheet() {
 
