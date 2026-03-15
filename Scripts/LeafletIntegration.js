@@ -7,9 +7,7 @@ var width = 0;
 var height = 0;
 
 const map = L.map('map', {
-  crs: L.CRS.Simple,
-  zoomSnap: 1,
-  zoomDelta: 1
+  crs: L.CRS.Simple
 });
 
 img.onload = function () {
