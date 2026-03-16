@@ -8,9 +8,9 @@ export async function fetchSheetData(sheetID, sheetName) {
         const json = JSON.parse(text.substring(47).slice(0, -2));
 
         const table = json.table;
-
+        console.log(table)
         const attributes = table.rows[0].c.map(cell => cell?.v);
-
+        console.log(attributes)
         const data = table.rows.slice(1).map(row => {
             const obj = {};
             row.c.forEach((cell, i) => {
