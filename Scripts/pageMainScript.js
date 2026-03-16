@@ -10,8 +10,8 @@ async function text(id) {
     const markerIcons = await markerIconsJS.json();
     const markers = await fetchSheetData(config.sheet_config.main_sheet.id, config.sheet_config.main_sheet.markers);
 
-    const table = document.getElementById(id);
-    table.innerText = JSON.stringify(data, null, 2);
+    //const table = document.getElementById(id);
+    //table.innerText = JSON.stringify(data, null, 2);
 
     initMap("./Images/Island.png", markers, markerIcons, "map")
 }
