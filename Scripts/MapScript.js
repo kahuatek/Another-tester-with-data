@@ -6,7 +6,7 @@ let height;
 
 // Init Map
 export async function initMap(path, markers, icons, objectID) {
-    console.log("map")
+    //console.log("map")
     const image = await loadImage(path);
     width = image.naturalWidth;
     height = image.naturalHeight;
@@ -31,9 +31,9 @@ export async function initMap(path, markers, icons, objectID) {
 }
 
 function initMarkers(markers, icons) {
-    console.log(icons)
+    //console.log(icons)
     markers.forEach(marker => {
-        console.log(icons.icons[marker.icon])
+        //console.log(icons.icons[marker.icon])
         const icon = L.icon({
             iconUrl: icons.icons[marker.icon],
             iconSize: [16, 16],
