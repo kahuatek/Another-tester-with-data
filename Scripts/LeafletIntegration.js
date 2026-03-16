@@ -10,7 +10,7 @@ const map = L.map('map', {
 });
 
 const overlay = L.imageOverlay('Images/Island.png', bounds, {
-  className: 'leaflet-image-map'
+  className: 'imagemap-class'
 }).addTo(map);
 
 map.setMaxBounds(bounds);
@@ -56,7 +56,7 @@ function updateMarkerSize() {
     iconUrl: 'Images/Icon.png',
     iconSize: [size, size],
     iconAnchor: [size/2, size/2],
-    className: 'marker'
+    className: 'marker-class'
   });
 
   marker.setIcon(icon);

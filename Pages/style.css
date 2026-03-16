@@ -1,12 +1,12 @@
 /* style.css */
 body { margin:0; }
 
-.leaflet-image-layer {
+.imagemap-class {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
 
-.my-marker {
+.marker-class {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
