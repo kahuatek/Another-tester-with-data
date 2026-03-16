@@ -14,7 +14,7 @@ async function text(id) {
     //const table = document.getElementById(id);
     //table.innerText = JSON.stringify(data, null, 2);
 
-    initMap("./Images/MBAM.png", markers, markerIcons, config.general_config.cur_gen, "map")
+    initMap("./Images/Island.png", markers, markerIcons, config.general_config.cur_gen, "map")
 }
 
 text("text");
