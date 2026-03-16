@@ -21,10 +21,10 @@ html, body {
 }
 
 button {
-    /*position: absolute; 
+    position: absolute; 
     top: 20px;          
     left: 20px;         
-    z-index: 1000;*/      
+    z-index: 1000;     
     background: red;  
     border: none;
     padding: 10px;
