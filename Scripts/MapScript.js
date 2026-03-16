@@ -33,7 +33,7 @@ export async function initMap(path, markers, icons, generation, objectID) {
 function initMarkers(markers, icons, generation) {
     //console.log(icons)
     markers.forEach(marker => {
-        if(marker.start < generation && (marker.end > generation || marker.end == -1)) {
+        if(marker.start <= generation && (marker.end >= generation || marker.end == -1)) {
             const icon = L.icon({
             iconUrl: icons.icons[marker.icon],
             iconSize: [16, 16],
