@@ -21,10 +21,10 @@ html, body {
 }
 
 .menu-button {
-    position: fixed;     /* stays in place even when map moves */
+    position: fixed;     
     top: 20px;
     right: 20px;
-    z-index: 2000;       /* above Leaflet map */
+    z-index: 2000;       
 
     min-height: 80px;
     min-width: 80px;
@@ -49,4 +49,5 @@ html, body {
     width: 48px;
     height: 48px;
     image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
