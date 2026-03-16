@@ -29,8 +29,39 @@ export async function initMap(path, markers, objectID) {
     window.addEventListener("resize", calculateZoomLimits);
 }
 
+function initMarkers(markers) {
+    const baseIconSize = 10;
+    const customIcon = L.icon({ 
+        iconUrl: 'Images/Icon.png', 
+        iconSize: [10, 10], // size of icon 
+        iconAnchor: [5, 5], // where the marker point is 
+        popupAnchor: [0, 0] // popup position 
+    });
 
-// Load Image Properly
+    const marker = L.marker([100,100], { icon: customIcon })
+    .addTo(map)
+    .bindPopup("Example location");
+
+    function updateMarkerSize() {
+
+    const zoom = map.getZoom();
+    const scale = map.getZoomScale(zoom, map.getMinZoom());
+    const size = baseIconSize * scale;
+
+    const icon = L.icon({
+        iconUrl: 'Images/Icon.png',
+        iconSize: [size, size],
+        iconAnchor: [size/2, size/2],
+        className: 'marker-class'
+    });
+
+    marker.setIcon(icon);
+    }
+
+    map.on("zoom", updateMarkerSize);
+    updateMarkerSize();
+}
+
 function loadImage(path) {
     return new Promise((resolve) => {
         const img = new Image();
@@ -39,8 +70,6 @@ function loadImage(path) {
     });
 }
 
-
-// Calculate Zoom
 function calculateZoomLimits() {
 
     const size = map.getSize();
