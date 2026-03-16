@@ -5,7 +5,7 @@ let width;
 let height;
 
 // Init Map
-export async function initMap(path, markers, icons, objectID) {
+export async function initMap(path, markers, icons, generation, objectID) {
     //console.log("map")
     const image = await loadImage(path);
     width = image.naturalWidth;
@@ -27,14 +27,14 @@ export async function initMap(path, markers, icons, objectID) {
 
     window.addEventListener("resize", calculateZoomLimits);
 
-    initMarkers(markers, icons);
+    initMarkers(markers, icons, generation);
 }
 
-function initMarkers(markers, icons) {
+function initMarkers(markers, icons, generation) {
     //console.log(icons)
     markers.forEach(marker => {
-        //console.log(icons.icons[marker.icon])
-        const icon = L.icon({
+        if(marker.start < generation && (marker.end > generation || marker.end == -1)) {
+            const icon = L.icon({
             iconUrl: icons.icons[marker.icon],
             iconSize: [16, 16],
             iconAnchor: [8, 8],
@@ -44,6 +44,7 @@ function initMarkers(markers, icons) {
         const onmapmarker = L.marker([marker.x, marker.y], { icon: icon })
         .addTo(map)
         .bindPopup(`<b>${marker.name}</b><br>${marker.desc}`);
+        }
     });
 }
 
