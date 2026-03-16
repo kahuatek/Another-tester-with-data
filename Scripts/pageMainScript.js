@@ -10,7 +10,7 @@ async function text(id) {
     const table = document.getElementById(id);
     table.innerText = JSON.stringify(data, null, 2);
 
-    initMap("../Images/Island.png", {}, "map")
+    initMap("./Images/Island.png", {}, "map")
 }
 
 text("text");
