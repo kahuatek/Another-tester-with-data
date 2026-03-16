@@ -58,7 +58,8 @@ function updateMarkerSize() {
   const icon = L.icon({
     iconUrl: 'Images/Icon.png',
     iconSize: [size, size],
-    iconAnchor: [size/2, size/2]
+    iconAnchor: [size/2, size/2],
+    className: 'marker'
   });
 
   marker.setIcon(icon);
