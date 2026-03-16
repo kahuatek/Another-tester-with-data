@@ -35,6 +35,12 @@ window.addEventListener("load", calculateZoomLimits);
 window.addEventListener('resize', calculateZoomLimits);
 
 const baseIconSize = 10;
+const customIcon = L.icon({ 
+    iconUrl: 'Images/Icon.png', 
+    iconSize: [10, 10], // size of icon 
+    iconAnchor: [5, 5], // where the marker point is 
+    popupAnchor: [0, 0] // popup position 
+});
 
 const marker = L.marker([100,100], { icon: customIcon })
   .addTo(map)
