@@ -9,12 +9,10 @@ export async function fetchSheetData(sheetID, sheetName) {
         console.log(text)
         const table = json.table;
         console.log(table)
-        const attributes = table.rows[0].c.map(cell => cell?.v);
-        console.log(attributes)
-        const data = table.rows.slice(1).map(row => {
+        const data = table.rows.slice(0).map(row => {
             const obj = {};
             row.c.forEach((cell, i) => {
-                obj[attributes[i]] = cell?.v ?? null;
+                obj[cols[c].label] = cell?.v ?? null;
             });
             return obj;
         });
