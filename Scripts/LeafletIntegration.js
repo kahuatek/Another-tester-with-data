@@ -34,25 +34,16 @@ function calculateZoomLimits() {
 window.addEventListener("load", calculateZoomLimits);
 window.addEventListener('resize', calculateZoomLimits);
 
-const customIcon = L.icon({
-  iconUrl: 'Images/Icon.png',
+const baseIconSize = 10;
 
-  iconSize: [10, 10],      // size of icon
-  iconAnchor: [5, 5],      // where the marker point is
-  popupAnchor: [0, 0]     // popup position
-});
-
-L.marker([100,100], { icon: customIcon })
+const marker = L.marker([100,100], { icon: customIcon })
   .addTo(map)
   .bindPopup("Example location");
-
-const baseIconSize = 10; // pixels in the original image
 
 function updateMarkerSize() {
 
   const zoom = map.getZoom();
   const scale = map.getZoomScale(zoom, map.getMinZoom());
-
   const size = baseIconSize * scale;
 
   const icon = L.icon({
@@ -64,8 +55,6 @@ function updateMarkerSize() {
 
   marker.setIcon(icon);
 }
-
-const marker = L.marker([100,100]).addTo(map);
 
 map.on("zoom", updateMarkerSize);
 updateMarkerSize();
