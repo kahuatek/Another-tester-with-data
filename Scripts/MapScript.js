@@ -1,12 +1,11 @@
 //MapScript.js
-
 let map;
 let bounds;
 let width;
 let height;
 
 // Init Map
-export async function initMap(path, markers, objectID) {
+export async function initMap(path, markers, icons, objectID) {
     console.log("map")
     const image = await loadImage(path);
     width = image.naturalWidth;
@@ -27,39 +26,23 @@ export async function initMap(path, markers, objectID) {
     calculateZoomLimits();
 
     window.addEventListener("resize", calculateZoomLimits);
+
+    initMarkers(markers, icons);
 }
 
-function initMarkers(markers) {
-    const baseIconSize = 10;
-    const customIcon = L.icon({ 
-        iconUrl: 'Images/Icon.png', 
-        iconSize: [10, 10], // size of icon 
-        iconAnchor: [5, 5], // where the marker point is 
-        popupAnchor: [0, 0] // popup position 
+function initMarkers(markers, icons) {
+    markers.forEach(marker => {
+        const icon = L.icon({
+            iconUrl: icons[marker.icon],
+            iconSize: [16, 16],
+            iconAnchor: [8, 8],
+            className: 'marker-class'
+        });
+
+         const marker = L.marker([marker.x, marker.y], { icon: icon })
+        .addTo(map)
+        .bindPopup(marker.name);
     });
-
-    const marker = L.marker([100,100], { icon: customIcon })
-    .addTo(map)
-    .bindPopup("Example location");
-
-    function updateMarkerSize() {
-
-    const zoom = map.getZoom();
-    const scale = map.getZoomScale(zoom, map.getMinZoom());
-    const size = baseIconSize * scale;
-
-    const icon = L.icon({
-        iconUrl: 'Images/Icon.png',
-        iconSize: [size, size],
-        iconAnchor: [size/2, size/2],
-        className: 'marker-class'
-    });
-
-    marker.setIcon(icon);
-    }
-
-    map.on("zoom", updateMarkerSize);
-    updateMarkerSize();
 }
 
 function loadImage(path) {
