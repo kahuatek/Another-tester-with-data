@@ -39,7 +39,7 @@ function initMarkers(markers, icons) {
             className: 'marker-class'
         });
 
-         const marker = L.marker([marker.x, marker.y], { icon: icon })
+        const onmapmarker = L.marker([marker.x, marker.y], { icon: icon })
         .addTo(map)
         .bindPopup(marker.name);
     });
