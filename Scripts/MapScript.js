@@ -1,42 +1,50 @@
 //MapScript.js
 
-//Init Map
-export function initMap(path, markers, objectID) {
-    const base   = initImage(path);
-    const width  = base.naturalWidth;
-    const height = base.naturalHeight;
+let map;
+let bounds;
+let width;
+let height;
 
-    const bounds = [[0,0],[height,width]];
+// Init Map
+export async function initMap(path, markers, objectID) {
 
-    const map    = L.map(objectID, {
-        crs: L.CRS.Simple,
-        minZoom: -2,
-        maxZoom: 2
+    const image = await loadImage(path);
+    width = image.naturalWidth;
+    height = image.naturalHeight;
+
+    bounds = [[0, 0], [height, width]];
+
+    map = L.map(objectID, {
+        crs: L.CRS.Simple
     });
 
-    const overlay = L.imageOverlay(path, bounds, {
-    className: 'imagemap-class'
+    L.imageOverlay(path, bounds, {
+        className: 'imagemap-class'
     }).addTo(map);
 
     map.setMaxBounds(bounds);
 
-    window.addEventListener("load", calculateZoomLimits);
-    window.addEventListener('resize', calculateZoomLimits);   
+    calculateZoomLimits();
+
+    window.addEventListener("resize", calculateZoomLimits);
 }
 
-//Init Markers
-function initMarkers(markers) {
 
+// Load Image Properly
+function loadImage(path) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.src = path;
+    });
 }
 
-async function initImage(path)  {
-    const image = await Image();
-    image.src = path;
-    return image;
-}
 
+// Calculate Zoom
 function calculateZoomLimits() {
+
     const size = map.getSize();
+
     const scaleX = size.x / width;
     const scaleY = size.y / height;
     const scale = Math.min(scaleX, scaleY);
