@@ -6,7 +6,7 @@ export async function fetchSheetData(sheetID, sheetName) {
         const response = await fetch(url);
         const text = await response.text();
         const json = JSON.parse(text.substring(47).slice(0, -2));
-
+        console.log(text)
         const table = json.table;
         console.log(table)
         const attributes = table.rows[0].c.map(cell => cell?.v);
