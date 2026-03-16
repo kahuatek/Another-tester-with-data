@@ -21,16 +21,17 @@ html, body {
 }
 
 button {
-    position: absolute; 
-    top: 20px;          
-    left: 20px;         
-    z-index: 1000;     
-    background: red;  
+    position: absolute;
+    top: 20px;
+    right: 20px;   
+    z-index: 1000;
+    background: red;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
 }
+
 button:hover {
     background-color: #eee;
 }
