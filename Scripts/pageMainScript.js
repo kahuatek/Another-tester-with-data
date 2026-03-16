@@ -1,5 +1,6 @@
 //pageMainScript.js
 import { fetchSheetData } from './SheetsScript.js';
+import { initMap } from './MapScript.js';
 
 async function text(id) {
     const configJS = await fetch('./config.json'); 
