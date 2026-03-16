@@ -21,9 +21,6 @@ html, body {
 }
 
 .map-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
 
     min-height: 80px;
     min-width: 80px;
