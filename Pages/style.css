@@ -20,7 +20,11 @@ html, body {
   image-rendering: crisp-edges;
 }
 
-.map-button {
+.menu-button {
+    position: fixed;     /* stays in place even when map moves */
+    top: 20px;
+    right: 20px;
+    z-index: 2000;       /* above Leaflet map */
 
     min-height: 80px;
     min-width: 80px;
@@ -31,18 +35,17 @@ html, body {
 
     padding: 10px;
     cursor: pointer;
-    z-index: 1000;
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.map-button:hover {
-    background-color: rgb(101, 154, 233);
+.menu-button:hover {
+    background: rgb(117, 164, 250);
 }
 
-.map-button img {
+.menu-button img {
     width: 48px;
     height: 48px;
     image-rendering: pixelated;
