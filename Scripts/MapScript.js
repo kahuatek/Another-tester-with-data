@@ -7,7 +7,7 @@ let height;
 
 // Init Map
 export async function initMap(path, markers, objectID) {
-
+    console.log("map")
     const image = await loadImage(path);
     width = image.naturalWidth;
     height = image.naturalHeight;
