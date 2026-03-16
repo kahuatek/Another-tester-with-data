@@ -43,7 +43,7 @@ function initMarkers(markers, icons) {
 
         const onmapmarker = L.marker([marker.x, marker.y], { icon: icon })
         .addTo(map)
-        .bindPopup(marker.name);
+        .bindPopup(`<b>${marker.name}</b><br>${marker.desc}`);
     });
 }
 
