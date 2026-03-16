@@ -8,7 +8,7 @@ async function text(id) {
 
     const markerIconsJS = await fetch('./Images/icons/icons.json'); 
     const markerIcons = await markerIconsJS.json();
-    console.log(markerIcons)
+    console.log(markerIcons.icons["icon"])
     const markers = await fetchSheetData(config.sheet_config.main_sheet.id, config.sheet_config.main_sheet.markers);
 
     //const table = document.getElementById(id);
